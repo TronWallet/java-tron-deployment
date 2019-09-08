@@ -1,0 +1,15 @@
+[Unit]
+Description=Java Tron
+Documentation=https://github.com/tronprotocol/java-tron#running
+
+[Service]
+WorkingDirectory=/opt/java-tron
+ExecStart=/usr/bin/java \
+    -jar /opt/java-tron/FullNode.jar \
+    $TRON_PARAMS -c main_net_config.conf
+User=tron
+Restart=on-failure
+RestartForceExitStatus=SIGPIPE
+RestartSec=30
+KillMode=process
+LimitNOFILE=262144
