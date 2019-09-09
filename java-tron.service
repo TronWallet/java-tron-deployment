@@ -13,3 +13,6 @@ RestartForceExitStatus=SIGPIPE
 RestartSec=30
 KillMode=process
 LimitNOFILE=262144
+
+[Install]
+WantedBy=multi-user.target
