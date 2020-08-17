@@ -4,15 +4,17 @@ Documentation=https://github.com/tronprotocol/java-tron#running
 
 [Service]
 WorkingDirectory=/opt/java-tron
-ExecStart=/usr/bin/java \
+ExecStart=/usr/java/jre1.8.0_212-amd64/bin/java -Xms43008m -Xmx43008m -XX:NewSize=26624m -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:ReservedCodeCacheSize=256m -XX:+CMSScavengeBeforeRemark \
+    -Dcom.sun.management.jmxremote.port=5000 \
+    -Dcom.sun.management.jmxremote.authenticate=false \
+    -Dcom.sun.management.jmxremote.ssl=false \
     -jar /opt/java-tron/FullNode.jar \
-    $TRON_PARAMS -c main_net_config.conf
-User=tron
+    -c main_net_config.conf
 Restart=on-failure
 RestartForceExitStatus=SIGPIPE
 RestartSec=30
 KillMode=process
-LimitNOFILE=262144
+LimitNOFILE=99999
 
 [Install]
 WantedBy=multi-user.target
